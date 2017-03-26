@@ -1,0 +1,57 @@
+\section*{Problem}
+\label{sec:prob}
+The problem consists on the analysis of back-lash. We have to consider the drive line in a crane, whose angular-control diagram is formed by a P controller, an electric motor and the back-lash. This model is depicted in figure \ref{fig:crane}.
+
+Now we focus on the back-lash. It can be modeled by a relation between the angles input $\tin$ and output $\tout$, or by the angular velocities. In this case, the model turns out to be:
+
+\begin{equation}
+\label{eqsys}
+\toutd= 
+    \left\{\begin{aligned} 
+      & \tind, \enskip |\tin-\tout| = \Delta \wedge \tind(\tin-\tout) > 0\\
+      & 0, \quad \textrm{ otherwise.}
+    \end{aligned}\right.
+\end{equation}
+The analysis of the back-lash model and its influence is broken down into the following five sub-problems:
+\begin{enumerate}
+\item Starting from the angular-velocity back-lash model in open loop, draw $\tin$, $\tout$, $\tind$ and $\toutd$ when the input is ($\tin(0) = 0$, $\tout(0) = -\Delta$):
+
+\begin{equation}
+ \tind (t) = 
+    \left\{\begin{aligned} 
+      1 &,& \quad  0 \leq t \leq 1 \\
+      -1 &,& \quad  1 \leq t \leq 2 \\
+      0 &,& \quad \textrm{otherwise.}
+    \end{aligned}\right.
+    \label{eq:inputBL}
+\end{equation}
+
+
+
+\item For the same model, prove that its gain is equal to 1, is passive and can be bounded by a sector $[k_1, k_2] = [0,1]$.
+
+\item Now we suppose that we have the angular-velocity model in a feedback loop, as represented in figure \ref{fig:feedback}. Under this circumstances, compute:
+
+\begin{enumerate}
+\item Considering the gain derived in \textbf{2}, what are the constraints that must be imposed to $G(s)$ to have a BIBO stable feedback system, by using Small Gain Theorem?
+\item What will be the constraints to $G(s)$ if the passivity theorem is used for having a BIBO stable closed-loop system?
+\item What will be the constraints to $G(s)$ if the Circle Criterion is used for having a BIBO stable closed-loop system?
+\end{enumerate}
+
+\item In the closed-loop system used in \textbf{3}, and showed in figure \ref{fig:feedback}, now we suppose that the transfer function is: 
+\begin{equation}
+G(s) = \frac{K}{s(1+sT)}
+\label{eq:gs}
+\end{equation}
+
+In this case, BIBO stability cannot be concluded by using the Small Gain Theorem or the Passivity Theorem. Explain why. For which $K>0$ the Circle Criterion ensures BIBO stability, given $T=1$?
+
+\item Simulate the crane system in Simulink. 
+
+\begin{enumerate}
+\item Compare the simulated model with the block diagrams presented in this work. What is the disturbance introduced in the simulated version?
+\item Now set $K=0.25$. Is the closed-loop system BIBO stable from $d_\textrm{in}$ to ($\tind$, $\toutd$)? Why cannot be BIBO stable to ($\tin$, $\tout$)?
+\item Finally consider other values for $K$. Compare with what was found in \textbf{4}. What happens if there is no back-lash?
+\end{enumerate}
+
+\end{enumerate}

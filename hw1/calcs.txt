@@ -1,0 +1,49 @@
+x'=x(1-y)
+y'=y(x-1)
+
+0=x(1-y)
+0=y(x-1)
+
+x=0,y=0
+x=1, y=1
+
+x'=x-xy 
+y'=yx-y
+
+A = [ 1-y, -x; y  x-1]
+
+A(0,0)= [1, 0; 0 -1]
+A(1,1)= [0, -1, 1 0]
+
+dy/dx = (yx-y)/(x-xy) = (y/x)(x-1)/(1-y)
+
+(1-y)/y dy = (x-1)/x dx
+
+ln|y| -y = x -ln|x|+k
+lny-y+lnx-x=k
+
+V(x,y) = lny-y+lnx-x
+dV/dt = dV/dx x' + dV/dy y'
+= (1/x-1)(x-xy) + (1/y -1)(xy-y)
+= (1-x-y+xy)+(x-xy-1+y) = 1-x-y+xy-xy-xy-1+y+x=0
+
+
+x= 1+rcost
+y= 1+rsint
+
+x'=r'cost-rt'sint
+y'= r'sint+rt'cost
+
+
+x'=x-xy= 1+rcost -(1+rcost)(1+rsint)= -r^2costsint-rsint =-rsint(rcsot+1)
+y'=yx-y = r^2costsint+rcost=rcost(rsint+1)
+
+
+1/r (rcost rsint)( -rsint(rcost+1), rcost(rsint+1))
+= (cost sint)(-rsint(rcost+1), rcost(rsint+1))
+= (-rsintcost(rcost+1) +rcostsint(rsint+1)= r^2costsint(sint-cost)=r'
+
+(sint cost)( -sint(rcost+1), cost(rsint+1))
+= (-sin^2t(rcost+1)+cos^2t(rsint+1))
+= rcos^2tsint-rsin^2cost+cos^2t-sin^2t
+

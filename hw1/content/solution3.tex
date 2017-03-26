@@ -1,0 +1,42 @@
+\section*{Solution - Question 3}
+%\label{sec:sol3}
+In this section, we are going to use the same theoretical background and proceedings described in section 2 to solve this problem. Now the system is:
+$$
+    \left\{\begin{aligned} 
+      \dot{x}(t) = x(1-y) \\
+      \dot{y}(t) = y(x-1)
+    \end{aligned}\right.
+$$
+
+We find the equilibrium points by setting $\dot{x}=\dot{y}=0$, obtaining the equilibrium points $\mathbf{p}_1 = (0,0)$ and $\mathbf{p}_2 = (1,1)$. The Jacobian matrix for this system turns out to be:
+
+$$
+ A=
+    \left[\begin{array}{cc}
+    1-y  & -x\\
+    y & x-1
+    \end{array}\right]
+    $$
+
+And, particularized for the equilibrium points, 
+
+\begin{equation*}
+    A_{(0,0)} =
+    \left[\begin{array}{cc}
+    1 & 0 \\
+    0 & -1
+    \end{array}\right], \; 
+    A_{(1,1)} =
+    \left[\begin{array}{cc}
+    0 & -1 \\
+    1 & 0
+    \end{array}\right].
+\end{equation*}
+
+For the first equilibrium, the eigenvalues are $\lambda_1 = 1$, $\lambda_2 = -1$, which represents a saddle point. Nevertheless, the eigenvalues for the second equilibrium are $\lambda_{1,2} = \pm i$, belonging to a non-hyperbolic equilibrium.
+
+A phase portrait representation for this system could be founded in Figure~\ref{fig:ppcircle}. 
+
+Let's comment what is going on in this case. The difference between this system and the one in section 2 is that now $x$ is the unique specie that eats grass, and $y$ preys on $x$. So, now, $y$ depends on $x$ since there isn't more food for $y$ if $x$ dies. 
+
+Therefore, there is a vicious circle in this ecosystem. Since $y$ eats $x$, the population of $x$ decreases. This causes lack of enough food for $y$, which implies that the population of $y$ also decreases. But now, knowing that there are few predators, $x$ increases. This generates more food available for $y$, and increases consequently. And thus, circle is completed.

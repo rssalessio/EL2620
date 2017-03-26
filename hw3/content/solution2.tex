@@ -1,0 +1,65 @@
+\section*{Solution - Question 2}
+\label{sec:sol2}
+The aircraft is controlled by linear state feedback:
+$$u(t)=-Lx(t)+(K_f,K_f)^T u_{\text{pilot}}^f(t)$$
+where $L$ is derived using linear quadratic control theory and $K_f$ is chosen such that the steady state gain is correct. The $L$ matrix, using the first design, is the following one:
+$$
+L = 
+\setlength{\arraycolsep}{4pt}
+\begin{pmatrix}
+  0.159   & 0.067  &       0 &  -0.086  &  0.025 &  0&0\\
+    -0.206 &  -0.087   & 0 &   0.112 &  -0.034  & 0 & 0   
+ 
+ \end{pmatrix}
+   $$
+$L$ acts on $\alpha,\dot{\theta}, \delta_e, \delta_s$. The pilot directly affect $x_e, x_s$, which act on $\delta_e, \delta_s$ and ultimately on $\theta$.
+The eigenvalues of $A-BL$ are given by:
+
+\begin{eqnarray*}
+& \det(\lambda I-(A-BL))=0 \\
+& \lambda_i = (-3.57, -1.3165, -0.0002, -20.0084, \\ 
+& -20.0286,-122.6750,-124.9776)^T
+\end{eqnarray*}
+
+%$\det(\lambda I-(A-BL))=0$:\\
+%$\lambda_i=(-3.57, -1.3165, -0.0002, -20.0084,-20.0286, \\ -122.6750,-124.9776)^T$.\\
+%$$
+%\lambda_i =
+% \begin{pmatrix}
+%  
+%   -3.5700\\
+%   -1.3165\\
+%   -0.0002\\
+%  -20.0084\\
+%  -20.0286\\
+%   -122.6750\\
+% -124.9776\\
+% \end{pmatrix}
+%$$
+We see that the flight dynamics now are stabilized. There is an eigenvalue $\lambda_3$ close to the origin, which is very slow and represents the pitch dynamics. In fact, its corresponding eigenvector is:
+$$
+\mathbf{v}_3 =
+ \begin{pmatrix}
+  
+   0.0015\\
+   0.0002\\
+   -1\\
+  0.0002\\
+  -0.0003\\
+  0\\
+ 0\\
+ \end{pmatrix}
+$$
+As seen from $\mathbf{v}_3$, $\lambda_3$ has a high dependency on the pitch angle, which proves that $\lambda_3$ is mainly associated to the pitch angle. The reason of why it is near the origin is the following: first of all it would be strange to see the pitch with a faster dynamics, since aircrafts, because of their size and weight, are not so agile (in fact before it was $\lambda_3 \approx 0.002$). Moreover, the feedback loop was not intended to stabilise that eigenvalue, since the control of the pitch angle is left to the pilot, in fact the feedback mainly acts on $\lambda_2$, which is mainly associated to the pitch rate (can be checked by looking at the corresponding eigenvector). \\ \\
+The pilot may be modelled with a PD-controller with a time delay of $0.3s$ as follows:
+$$u_{\text{pilot}}= K_p \frac{1+T_d s}{1+\frac{T_d}{N}s}e^{-0.3s}(\theta_{\text{ref}}-\theta)$$
+where $\theta_{\text{ref}}$ is the desired pitch angle, $K_p=0.2,T_d=0.5,N=10$.
+It's a reasonable model because: 
+\begin{enumerate}
+\item It's natural to have some time delay because a human person needs time to react, and there may be some delay due to the servos.
+\item  The proportional part is also natural since the pilot tries, in normal condition, to give commands proportional to the error.
+\item The derivative action acts on the error, so we are looking at the derivative of the error, which is a crude approximation of what will the error look in the future. Thus the pilot tries to control based on what he thinks will happen. if the error changes rapidly the pilot may panic, and that is well represented by the derivative action. (the slope of the error changes continuously, so the derivative action changes sign frequently).
+\item The integral action is not included since the pilot does not care about the history of the error, but only about what is the error now.
+ \end{enumerate}
+
+ We now check a simulation of the closed loop system, including the pilot. As reference check figures \ref{fig:rangles1}, \ref{fig:rangles2}. First, the rudder angles should not be too high in order not to overuse the actuators and avoid saturation effects. Moreover the rudder angles heavily influence the pitch rate, which changes the pitch, and the attack angle. In fact, notice that the pitch rate affects both the attack angle and the pitch in a similar way since $A_{12} \approx 1$ and $A_{32} = 1$. In figure \ref{fig:rangles2} the attack angle at the peak is about $0.4$ rad which is about $11.5 \degree$ degrees, below the average critical angle of attack (it's in the range $[15 \degree ,20 \degree]$). Above that critical angle the aircraft would stall ~\cite{Wikipedia:aoa}.

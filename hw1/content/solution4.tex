@@ -1,0 +1,50 @@
+\section*{Solution - Question 4}
+%\label{sec:sol4}
+\begin{enumerate}
+\item{
+Consider the original system defined by the equations (\ref{eqn:syseq1}) and (\ref{eqn:syseq2}).\\
+First, consider the positive $x$-axis $W_1 =\{ (x,y) \in \mathbb{R}^2 : y=0, x \geq 0\}$. Then:
+\begin{align*}
+    \frac{d x}{dt} & = ax+bx^2  \\
+    \frac{d y}{dt} & = 0 
+\end{align*}
+Consider now the initial condition $(x_0,0) \in W_1$. Since $\dot{y}(t)=0$ and $y(t)=0$ the system can vary only along $(x(t),0) \in W_1 \Rightarrow W_1$ is an invariant set. Same reasoning can be applied to $W_2 =\{ (x,y) \in \mathbb{R}^2 : x=0, y \geq 0\}$ and find that $W_2$ is an invariant set.
+It's a necessary feature of the population model because otherwise it would mean that  $y$ specimen can transform or evolve into a $x$ specimen (or viceversa).}
+\item {As found in the previous section (3) for the coefficients $a=e=1,b=f=0,c=d=-1$ the model represents a population $x$ that eats grass and a population $y$ which preys on $x$. This model has two equilibria, as previously shown, of which the one in $(x,y)=(1,1)$ has the eigenvalues of the Jacobian matrix which are purely imaginary (i.e. null real part). Therefore we can not use the Hartman-Grobman theorem to characterize the behaviour of the system around that equilibria. It can be proven that $(1,1)$ it's a center equilibria, therefore there is a periodic orbit around that point. 
+To do so we use a very simple idea: first we find a function $V(x,y)$ such that is constant along solutions of the system. Then, if we find a closed bounded curve along which $V(x,y)=const.$ then this curve is a solution of the system, and since it is closed and bounded, the solution is periodic.
+\\The system is given by:
+$$
+    \left\{\begin{aligned} 
+      \dot{x}(t) = x(1-y) \\
+      \dot{y}(t) = y(x-1)
+    \end{aligned}\right.
+$$
+To find $V(x,y)$ we notice that $\frac{dy}{dx}$ is function only of $x,y$ and that can be easily solved: 
+$$\frac{dy}{dx} = \frac{y(x-1)}{x(1-y)}$$
+$$\int \frac{1-y}{y} dy = \int \frac{x-1}{x}dx$$
+$$\ln|y|-y=x-\ln|x|+c$$
+Since $x,y \geq 0$, then :
+$$\ln(y)-y-x+\ln(x) = c$$
+where $c \in \mathbb{R}$ is a constant, thus our function $V(x,y)$ is:
+$$V(x,y)=\ln(y)-y-x+\ln(x)$$
+To prove that $V$ is conserved we calculate $\dot{V}(x,y) = \frac{\partial V}{\partial x}\dot{x}+ \frac{\partial V}{\partial y}\dot{y}$ and show that it is equal to 0:
+\begin{align*}
+\dot{V}(x,y)&= \Big(\frac{1}{x}-1\Big)(x-xy)+\Big(\frac{1}{y}-1\Big)(yx-y)\\
+&= 1-x-y+xy+x-yx-1+y = 0
+\end{align*}
+ Now to prove that the solutions are periodic around $(1,1)$ we must prove that $V(x,y)$ around that point has level sets that are simple closed bounded curves. \\ 
+First notice that $V(1,1) = -2$ and that $V(x,y)$ has only $1$ stationary point, which is $(1,1)$. Next, the Hessian matrix of $V(x,y)$ is :
+$$
+ \mathbf{H}(x,y)=
+    \left[\begin{array}{cc}
+   -\frac{1}{x^2}  & 0\\
+    0 & -\frac{1}{y^2}
+    \end{array}\right]
+    $$
+which is negative definite in $(1,1) \Rightarrow V(x,y)$ is concave in $(1,1)$ and has a maxima in that point. Since $V(x,y)$ is a continuous function in $(1,1)$ and concave, in a neighbourhood of $(1,1)$ $V(x,y)$ is a quadratic form, and has the shape of a cone. Then $V(x,y) = V(1,1) + \frac{1}{2}(\mathbf{x}-\mathbf{x}_0)^T\mathbf{H}_{(1,1)}(\mathbf{x}-\mathbf{x}_0)+O(||\mathbf{x}-\mathbf{x}_0||^2)$, where $\mathbf{x}_0=(1,1)$.\\ Then $V(x,y) \approx -4+2x+2y-x^2-y^2=\hat{V}(x,y)$. Since $V$ is continuous,  for $|\mathbf{x}-\mathbf{x}_0|$ sufficiently small  we can use $\hat{V}(x,y)$, the second order approximation of $V$ to analyse the level sets of $V(x,y)$ around $(1,1)$. To do so we must ensure that we analyse the level sets \textit{near} $(1,1)$: if $\gamma$ is a level set of $V$ then: $$|\mathbf{x}-\mathbf{x}_0|<\delta, \mathbf{x} \in \gamma$$ with $\delta> 0$ sufficiently small in order to ensure that the 2-nd order approximation is valid. Since $V$ is concave, and $V(\mathbf{x}_0)=-2$, this condition, for continuity of $V$, is translated into:
+$$\forall \varepsilon > 0 \exists \delta :|\mathbf{x}-\mathbf{x}_0|<\delta \Rightarrow |V(x,y)+2 |<\varepsilon$$
+Then $|V(x,y)-\hat{V}(x,y)| \to 0$ as $\varepsilon \to 0$.
+Consider the level set $V(x,y)=-2-\varepsilon$ ($-\varepsilon$ because $V(1,1)$ is a local maxima): for $\varepsilon \to 0$ we can look at $\hat{V}(x,y) =-2-\varepsilon \Rightarrow -2+2x+2y-x^2-y^2+\varepsilon=0$. This is simply a circle centred in $(1,1)$ with radius $\sqrt{\varepsilon}$, in fact we can write it like $\varepsilon-(x-1)^2-(y-1)^2=0$. For $\varepsilon > 0$, and sufficiently small, the level set is a circumference of radius $\sqrt{\varepsilon}$: this is a closed, simple and bounded curve (it can be bounded by a circumference of radius $\varepsilon$) $\Rightarrow V(x,y)$ has level sets (fig. \ref{fig:vlevelsets}) that are simple closed bounded curves for $\mathbf{x}$ sufficiently close to $(1,1)$. The solutions $(x,y)$ on those curves then have a periodic orbit thus $(1,1)$ is a center equilibria.
+    
+}
+\end{enumerate}

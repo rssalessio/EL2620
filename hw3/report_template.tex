@@ -1,0 +1,54 @@
+\documentclass[a4paper,twocolumn]{article} % Document type
+\usepackage{gensymb}
+\ifx\pdfoutput\undefined
+    %Use old Latex if PDFLatex does not work
+   \usepackage[dvips]{graphicx}% To get graphics working
+   \DeclareGraphicsExtensions{.eps} % Encapsulated PostScript
+ \else
+    %Use PDFLatex
+   \usepackage[pdftex]{graphicx}% To get graphics working
+   \DeclareGraphicsExtensions{.pdf,.jpg,.png,.mps} % Portable Document Format, Joint Photographic Experts Group, Portable Network Graphics, MetaPost
+   \pdfcompresslevel=9
+\fi
+\usepackage{hyperref}
+\usepackage{amsmath,amssymb}   % Contains mathematical symbols
+\usepackage[ansinew]{inputenc} % Input encoding, identical to Windows 1252
+\usepackage[english]{babel}    % Language
+%\usepackage[round,authoryear]{natbib}  %Nice author (year) citations
+\usepackage[square,numbers]{natbib}     %Nice numbered citations
+%\bibliographystyle{unsrtnat}           %Unsorted bibliography
+\bibliographystyle{plainnat}            %Sorted bibliography
+
+\addtolength{\topmargin}{-30mm}% Removes 30mm from the top margin
+\addtolength{\textheight}{30mm}% Adds it to the text height
+
+
+\begin{document}               % Begins the document
+
+\title{Homework 3 in EL2620 Nonlinear Control}
+\author{Alessio Russo \\ 911103-T192 \\ alessior@kth.se \and Enrique Cobo Jim\'enez\\
+  921005-1299 \\ ejcj@kth.se}
+
+
+\maketitle                     % Generates the title
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% solutions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{content/problem.tex}
+\input{content/solution1.tex}
+\input{content/solution2.tex}
+\input{content/solution3.tex}
+\input{content/solution4.tex}
+\input{content/solution5.tex}
+\input{content/references.tex}
+
+\input{content/solution6.tex}
+
+\input{content/figures.tex}
+
+\end{document}      % End of the document

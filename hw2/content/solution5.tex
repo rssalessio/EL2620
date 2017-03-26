@@ -1,0 +1,21 @@
+\section*{Solution - Question 5}
+%\label{sec:sol5}
+\begin{enumerate}
+
+\item The simulation of the crane control system in Simulink is equivalent to the feedback loop presented in figure \ref{fig:feedback}, with some considerations that are going to be discussed in this question.
+
+Fist of all, parameter $\Delta = 0.5$ in the simulation. This parameter is set in the back-lash model, through the field "Deadband width". Here it is defined the whole margin for the back-lash, that is, from $-\Delta$ to $\Delta$. Since the parameter is equal to 1, we obtain the value for $\Delta$ exposed in the beginning. Furthermore, the maximum difference value between $\tin$ and $\tout$ seen in the simulations is equally 0.5.
+
+\item The disturbance that is added in the simulation is now described. There are two step modules which generates an unique pulse, which starts at $t=1$ and ends at $t=2$, with amplitude 1.
+
+Afterwards, this signal goes into an integrator, being this integrated signal the disturbance added. Due to this module, the area below this signal is not bounded, which violates the first assumption of what BIBO stability represents. Since the input signal is not bounded, nothing can be ensured about the boundedness of the output signal.
+
+Let's look at figure \ref{fig:bibo}. As we can see, for the bounded and unbounded disturbances, we obtain similar outputs. For the bounded disturbance, we can conclude that the system is BIBO stable to ($\tind, \toutd$). The system cannot be BIBO stable to ($\tin, \tout$) because this signals do not converge to zero.
+
+\item As it was proven in \textbf{4}, the whole system is only guaranteed to be BIBO stable if $0<K<1$. Nevertheless, regarding the Circle Criterion, this is a sufficient condition, which implies that higher values for $K$ could also result in stable systems. 
+
+In fact, if we simulate for $K=2$ the system is stable yet. Nevertheless, for $K=4$, the system is unstable. Both situations are compared in figure \ref{fig:notbibo}. 
+
+Finally we are going to consider the case when the back-lash is neglected, described in figure \ref{fig:blneglected}. Under these circumstances, $\tin = \tout$ and $\tind = \toutd$, due to the fact that  the nonlinearity have been removed. So,  the parameter $K$ can be increased, when a higher $K$ means a faster response.
+
+\end{enumerate}

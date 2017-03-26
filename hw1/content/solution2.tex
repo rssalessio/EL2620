@@ -1,0 +1,116 @@
+\section*{Solution - Question 2}
+%\label{sec:sol2}
+Now consider the following system:
+
+$$
+    \left\{\begin{aligned} 
+      \dot{x}(t) = x(3-x+cy) \\
+      \dot{y}(t) = y(2+ex-y)
+    \end{aligned}\right.
+$$
+The equilibrium points are given by setting $\dot{x}=0, \dot{y}=0$:
+$$
+    \left\{\begin{aligned} 
+      0 = x(3-x+cy) \\
+      0 = y(2+ex-y)
+    \end{aligned}\right.
+$$
+
+% From which we obtain the solutions:
+% $$
+%     \left\{\begin{aligned} 
+%       x &= 0 \\
+%       y &= 0
+%     \end{aligned}\right. \cup 
+%     \left\{\begin{aligned}
+%      x &= 0 \\
+%      y&=2+ex
+%     \end{aligned}\right. \cup
+%     \left\{\begin{aligned}
+%      y &= 0 \\
+%      x&=3+cy
+%     \end{aligned}\right. \cup
+%     \left\{\begin{aligned}
+%      x &= 3+cy \\
+%      y&= 2+ex
+%     \end{aligned}\right.
+% $$
+Let $\mathbf{p}_i = (x_i,y_i)$ be the i-eth equilibria. The first three equilibria are given by $\mathbf{p}_1 = (0,0), \mathbf{p}_2 = (0,2), \mathbf{p}_3 = (3,0)$. The 4-th equilibria is given by:
+$$
+    \left\{\begin{aligned}
+     x &= 3+cy \\
+     y&= 2+3e+cey
+    \end{aligned}\right. \Rightarrow
+    \left\{\begin{aligned}
+     x &= 3+c\frac{2+3e}{1-ce} \\
+     y&= \frac{2+3e}{1-ce}\quad ce \neq 1
+    \end{aligned}\right.
+$$
+Thus $\mathbf{p}_4 = ( \frac{3+2c}{1-ce}, \frac{2+3e}{1-ce})$ with $ce \neq 1$.
+
+To study the equilibrium points we can linearise the system around those equilibrium points to study the behaviour of the system, by using the Hartman-Grobman theorem~\cite[p. 288]{Sastry:1999:Nonlinear-systems:-analysis-stability-and-control:xr}. We will therefore linearise the system around the equilibrium points, calculate the eigenvalues, and determine the equilibria based on the eigenvalues. The linearisation is given by  $\dot{\tilde{\textbf{x}_i}} = A \tilde{\textbf{x}_i}$, with $\tilde{\textbf{x}_i} = \textbf{x} - \textbf{x}_i$ and the Jacobian matrix $A = \left. \frac{\partial\textbf{f}}{\partial \textbf{x}}(\textbf{x}) \right|_{\textbf{x}=\textbf{x}_i}$. \\The Jacobian matrix in this case is:
+$$
+ A=
+    \left[\begin{array}{cc}
+    3-2x+cy  & cx\\
+    ey & 2+ex-2y
+    \end{array}\right]
+    $$
+    
+Now we analyze each equilibrium point separately in order to classify them. Since we have a second-order system, we know that we can classify by looking at the eigenvalues of the Jacobian: ~\cite[p. 37]{Khalil:2002:Nonlinear-systems:vh}
+
+\begin{itemize}
+\item If they are \textbf{real}, equilibrium is going to be a stable node if both are negative, an unstable node if both are positive, and a saddle point if one is positive and the other is negative.
+
+\item If they are \textbf{complex}, we have to look at the real part. If it is positive, we have an unstable focus; negative belongs to a stable focus, and zero implies a non-hyperbolic equilibrium.
+\end{itemize}
+
+We start from $\mathbf{p}_1 = (0,0)$. The Jacobian at this point becomes:    
+$$
+ A_{(0,0)}=
+    \left[\begin{array}{cc}
+    3  & 0\\
+    0 & 2
+    \end{array}\right]
+$$
+
+Whose eigenvalues are $\lambda_1 = 3$ and $\lambda_2 = 2$. Since both of them are positive, the equilibrium point $\mathbf{p}_1$ is an unstable node.
+
+For the point $\mathbf{p}_2 = (0,2)$ the Jacobian turns out to be:
+$$
+ A_{(0,2)}=
+    \left[\begin{array}{cc}
+    3 +2c  & 0\\
+    2e & -2
+    \end{array}\right]
+$$
+
+And the eigenvalues becomes $\lambda_1 = 3 + 2c$ and $\lambda_2 = -2$. In this case, we have to look at the value of $c$ to classify this point. If $c<-\frac{3}{2}$ this equilibrium is a stable node; and it is a saddle point if $c > -\frac{3}{2}$.
+
+If we have a look to the third point, $\mathbf{p}_3 = (3,0)$, whose Jacobian is:
+$$
+ A_{(3,0)}=
+    \left[\begin{array}{cc}
+    -3  & 3c\\
+    0 & 3e+2
+    \end{array}\right]
+$$
+And the eigenvalues are $\lambda_1 = -3$ and $\lambda_2 = 2+3e$. As in the previous case, the character of this point would depend of the value of $e$. If $e<-\frac{2}{3}$ this point would be a stable node; and a saddle point otherwise. 
+
+Finally, the fourth point $\mathbf{p}_4 = \left( \frac{3+2c}{1-ce}, \frac{2+3e}{1-ce} \right)$ is strongly related to the values of $c$ and $e$, so we match each tuple $(c,e)$ with its character.
+
+\begin{itemize}
+\item For $(c,e) = (-2, -1)$, $\mathbf{p}_4 = (1,1)$, and the eigenvalues are $\lambda_1 = -2.41$ and $\lambda_2 = 0.4142$, being a saddle point.
+\item For $(c,e) = (-2, 1)$, $\mathbf{p}_4 = (-\frac{1}{3},\frac{5}{3})$, and the eigenvalues are $\lambda_1 = 0.786$ and $\lambda_2 = -2.11$, being a saddle point.
+\item For $(c,e) = (2, -1)$, $\mathbf{p}_4 = (\frac{7}{3},-\frac{1}{3})$, and the eigenvalues are $\lambda_1 = 0.82$ and $\lambda_2 = -2.82$, being a saddle point.
+\item For $(c,e) = (2, 1)$, $\mathbf{p}_4 = (-7,-5)$, and the eigenvalues are $\lambda_1 = -2.41$ and $\lambda_2 = 14.42$, being a saddle point.
+\end{itemize}
+
+Having characterized all equilibria, we comment the phase plane for all values of $(c,e)$ given in the formulation.
+
+\begin{enumerate}
+\item $(c,e) = (-2, -1)$. The phase portrait of the system described is shown in Figure~\ref{fig:ppcomp}. As we show in the first section, this case corresponds to a \textbf{competitive} scenario, in which both species can survive either eating grass or the other. So, there are two stable nodes, $(0,2)$ if $y$ eats $x$; and $(3,0)$ otherwise.
+\item $(c,e) = (-2, 1)$. The phase portrait of the system described is shown in Figure~\ref{fig:ppy}. This case belongs to \textbf{$\boldsymbol x$ prey, $\boldsymbol y$ predator}. Consequently, the unique stable node is located in $(0,2)$, since $y$ has eaten all $x$.
+\item $(c,e) = (2, -1)$. The phase portrait of the system described is shown in Figure~\ref{fig:ppx}. Now we are in the dual case, in which \textbf{$\boldsymbol y$ is prey and $\boldsymbol x$ is predator}, and the stable solution corresponds to $(3,0)$.
+\item $(c,e) = (2, 1)$. The phase portrait of the system described is shown in Figure~\ref{fig:ppsymb}. In this case, the society is \textbf{symbiotic}, and there is no stable point. The species will grow given the high amount of food available.
+\end{enumerate}

@@ -1,0 +1,12 @@
+%% PPLANE file %%
+
+H.name = 'pp2.pps';
+H.xvar = 'x';
+H.yvar = 'y';
+H.xder = 'x*(3-x+c*y)';
+H.yder = 'y*(2+e*x-y)';
+H.pname = {'c','','e','','',''};
+H.pval = {'-2','','-1','','',''};
+H.fieldtype = 'arrows';
+H.npts = 20;
+H.wind = [-2  4 -4  2];

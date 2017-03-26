@@ -1,0 +1,24 @@
+\section*{Solution - Question 3}
+\label{sec:sol3}
+Now we analyse the system when the pilot is in an "emergency situation", and he is replaced by a "relay pilot" that models the fact that the pilot is panicking and he is trying to compensate the error $\theta_{\text{ref}}-\theta$ with maximum command signals. This behaviour may induce sustained oscillations in the system (PIO - Pilot Induced Oscillations). This is usual for system with slow unstable dynamics, such as the aircraft, that cannot respond fast enough to the command input. 
+
+To analyse the PIO mode we can make use of the describing function method ~\cite[p. 280]{Khalil:2002:Nonlinear-systems:vh} to check for a possible periodic solution. Suppose the error $e(t)=\theta_{\text{ref}}-\theta$ is the input to the non linearity and also $e(t)$ is oscillating with amplitude $A$ and period $\omega$. Let $u(t)$ be the output of the non linearity  and suppose the plant is low-pass filter such that $|G(jn\omega)| \ll |G(j\omega)|$ for $n \geq 2$, then we may use the describing function method to  model the non linearity, so that it is replaced by a function $$N(A,\omega)= \frac{b_1(\omega)+ja_1(\omega)}{A}$$ where $b_1,a_1$ are the first Fourier coefficients of the signal $u(t)$. \\
+This gives as output of the plant an oscillating signal of maximum amplitude: $$\textrm{max}|y(t)| \approx |G(j\omega)|\sqrt{a_1^2+b_1^2}= |G(j\omega)||N(A,\omega)|A$$ 
+The describing function for a relay is:
+$$N(A) = \frac{4D}{\pi A}$$
+where $A$ is the amplitude of the oscillation and $D$ is the output value, in absolute sense, of the relay system, and in our case $D=0.2$.\\
+To check for existence of period solution the idea is that we have sustained oscillations with pulsation $\omega$ if the open loop-gain is $1$ and the  phase-lag is $-\pi$ for that pulsation:
+\begin{equation}\label{eq:cond1}
+G(j\omega)N(A)=-1 \Leftrightarrow G(j\omega) = -\frac{1}{N(A)}
+\end{equation}
+Notice that because of that condition, the output in module has maximum amplitude:
+$$\textrm{max} |y(t)| \approx  |G(j\omega)||N(A,\omega)|A = A$$ 
+In our case the describing function gives no phase contribution, so we first check for which $\omega $:
+\begin{equation} \label{eq:cond2}
+\textrm{arg}G(j\omega)=-\pi
+\end{equation}
+To do so we linearised the system and analysed the Bode and Nyquist plots (figures \ref{fig:sim2bode}, \ref{fig:sim2nyquist}).\\
+By checking the plots, the condition (\ref{eq:cond2}) is satisfied for $\omega \approx 2.77 \frac{\textrm{rad}}{\textrm{sec}}$: the Nyquist curve for that pulsation has imaginary part which is almost 0 and  real part $-0.402$. In fact $|G(j2.77)| = -7.92 dB \approx 0.402$.\\
+Then we need to find for which $A$ we may obtain oscillations, by using the condition (\ref{eq:cond1}):
+$$ G(j2.77) \approx -0.402 = -\frac{\pi A}{4D} \Rightarrow A \approx 0.1024$$
+The period of the oscillation is given by: $$\frac{2\pi}{\omega} = \frac{2\pi}{2.77}\approx 2.27 \textrm{ seconds} $$ By simulating the system we see the aircraft oscillating around the set point $1 \text{rad}$ of $\pm 0.1 \text{rad}$ with period $\sim 2.34$ seconds, which is almost what we obtained with the describing function analysis. So the prediction, using the describing function analysis, gives very good results for this case.

@@ -1,0 +1,32 @@
+\section*{Solution - Question 4}
+%\label{sec:sol4}
+
+In this question we analyze two different designs. Both of them change $L$ and $K_f$ to a faster design, and the difference between them are the filter time constant $T_f$, from 0.3 to 0.03 seconds. 
+
+The process we are going to follow is the one described in question \textbf{3}. 
+
+\begin{enumerate}
+\item We start analyzing \textit{design2}. Bode and Nyquist plot are shown in figures \ref{fig:bode2} and \ref{fig:nyquist2} respectively. 
+
+From this analysis, we get that the condition (\ref{eq:cond2}) is satisfied for  $\omega \approx 4.41 \frac{\textrm{rad}}{\textrm{sec}}$. In addition, the Nyquist curve in this point gives real part -0.4212 and imaginary part almost 0. If we apply (\ref{eq:cond1}) we obtain the amplitude:
+$$ G(j4.41) \approx -0.4212 = -\frac{\pi A}{4D} \Rightarrow A \approx 0.1073$$
+
+And the period turns out to be 1.428 seconds. 
+
+\item Now we focus in \textit{design3}. Both Bode and Nyquist curves can be found in figures \ref{fig:bode3} and \ref{fig:nyquist3}. 
+
+Following the same proceeding, the condition (\ref{eq:cond2}) is satisfied for this design for $\omega \approx 8.15 \frac{\textrm{rad}}{\textrm{sec}}$. The Nyquist curve for this point shows, for this $\omega$, a real part of -0.25, and an almost 0 imaginary part. Now, applying condition (\ref{eq:cond1}):
+$$ G(j8.15) \approx -0.25 = -\frac{\pi A}{4D} \Rightarrow A \approx 0.0637$$
+And the period in this case is 0.771 seconds. 
+\end{enumerate}
+
+Now we compare all designs under analysis. This comparative is depicted in figure \ref{fig:comparative}. Some conclusions can be obtained from this plots: 
+
+\begin{enumerate}
+\item The concordance between the theoretical and  simulated values are very good, being the amplitude 0.106 and 0.071, and the period 1.479 and 0.853 seconds; for \textit{design2} and \textit{design3}, respectively.
+
+\item If we compare the values from \textit{design2} with those obtained under \textit{design1}, we can see that the amplitude is about the same in \textit{design2}, whereas the period is smaller. This could be explained by considering the fact that the system now is faster but the pilot command is still slow:  so the oscillations have the same amplitude but now happens more frequently.
+
+\item Regarding \textit{design3}, we can see that both amplitude and period has decreased compared to those obtained under \textit{design1}. Now the faster reaction of the pilot are captured by the low pass filter: this reduces the amplitude of the oscillations, because the pilot command is faster, despite making them more frequent (because of the fact that the system is faster).
+\end{enumerate}
+

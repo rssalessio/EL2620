@@ -1,0 +1,22 @@
+\section*{Solution - Question 5}
+%\label{sec:sol5}
+Starting from the general system described in (\ref{eqn:syseqs}), the goal for this question is to generalize the system for more than 2 species.
+
+% Let's consider a first case, in which there are $N=3$ species in the ecosystem. Under this assumption, the expanded system becomes:
+
+% $$
+%     \left\{\begin{aligned} 
+%       \dot{x}_1(t) = x_1(a_1 + r_{11}x_1 +  r_{12}x_2 +  r_{13}x_3) \\
+%       \dot{x}_2(t) = x_2(a_2 + r_{21}x_1 +  r_{22}x_2 +  r_{23}x_3) \\
+%       \dot{x}_3(t) = x_3(a_3 + r_{31}x_1 +  r_{32}x_2 +  r_{33}x_3)
+%     \end{aligned}\right.
+% $$
+
+We introduce a change in notation. Now, for each specie $i$, identified by $x_i$, the constant that shows if eats grass becomes $a_i$, and the relationship between this specie with another specie $j$ is denoted by $r_{ij}$.
+
+If we generalize the system for $N$ species, we obtain for each one (recall $a_i,r_{ij} \in \mathbb{R}, i,j=1,...,N$):
+
+% $$
+% 	\dot{x}_i = x_i\Big (a_i + \sum_{j=1}^N r_{ij}x_j\Big) \quad a_j,b_{ji} \in \mathbb{R}, j=1,...,N
+% $$
+$$ \dot{x}_i(t) = x_i \left(a_i + \sum_{j=1}^N r_{ij}x_j\right)$$

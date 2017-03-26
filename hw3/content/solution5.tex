@@ -1,0 +1,17 @@
+\section*{Solution - Question 5}
+%\label{sec:sol5}
+In this question we suggest a new design in order to improve the performance of the system. This new design is based on a combination between \textit{design1} and the filter time constant set in \textit{design3}. 
+
+Under these conditions we analyze the system, as explained in question \textbf{3}. The reference plots for the Bode and Nyquist curves are depicted in figures \ref{fig:bodeimp} and \ref{fig:nyquistimp}. 
+
+Now we apply condition (\ref{eq:cond2}). In this case, we obtain $\omega \approx 5.99 \frac{\textrm{rad}}{\textrm{sec}}$ (period of 1.0489 seconds). The Nyquist point for this pulsation gives a real part of -0.147, and a imaginary part almost 0. So, condition (\ref{eq:cond1}) gives us the amplitude of: 
+
+$$ G(j5.99) \approx -0.147 = -\frac{\pi A}{4D} \Rightarrow A \approx 0.0374$$
+
+Figure \ref{fig:improved} shows this suggested design in contrast with the other designs analyzed along this work. We first check the accuracy of the results obtained. The simulated amplitude is 0.043 radians, and the period is 1.128 seconds.
+
+Comparing all design, we can see that our improved system gives the smallest amplitude of the oscillations. Now, this system is slower and also the pilot signal is faster, which is the key point to understand why now this amplitude is small. 
+
+If we look at the period, we can see that it is smaller than the one in \textit{design3}, but greater that the obtained under \textit{design1}.  \\
+Overall it's a plausible model since the period is still high, so the pilot has not to do many quick movements. \\ \\
+Another way to reduce the PIO amplitude would be to change the filter on the pilot command in order to change the Nyquist locus.

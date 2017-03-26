@@ -1,0 +1,57 @@
+\section*{Solution - Question 4}
+%\label{sec:sol4}
+If BIBO stability could not be ensured, one of the possible causes is that the new linear system is not stable. 
+
+As it is stated in ~\cite[p. 99]{Oppenheim:2002:Signals-and-systems}, a linear and time-invariant system is stable if the impulse response is absolutely integrable:
+
+$$
+\int_{-\infty}^{\infty} |h(\tau)| d\tau = C < \infty
+$$
+
+Since we are given the Laplace-domain system, we have to compute the inverse transform:
+
+$$
+g(t) = \mathcal{L}^{-1} \{G(s)\} = 
+$$
+$$
+= \mathcal{L}^{-1} \left\{ \frac{K}{s(1+sT)} \right\} = K \left( 1 - e^{-t/T} \right) u(t)
+$$
+
+Where $u(t)$ denotes the Heaviside step function. Now we apply the theorem:
+
+$$
+\int_{-\infty}^{\infty} |g(\tau)| d\tau = \int_{0}^{\infty} \left| K \left( 1 - e^{-t/T} \right) \right| d\tau =
+$$
+$$
+= \int_{0}^{\infty} K d\tau + \int_{0}^{\infty} Ke^{-t/T}  d\tau = K( T + \lim_{\tau \to \infty}\tau) \to \infty 
+$$
+
+So, the system $G(s)$ is not stable. This implies, for the Small Gain Theorem and Passivity Theorem stated in question \textbf{3}:
+
+\begin{enumerate}
+\item The Small Gain Theorem requires that both systems must be stable. Since one of them is not stable, we cannot conclude BIBO stability using this theorem. 
+
+\item For the Passivity Theorem, we required that $G(s)$ must be strictly passive. Nevertheless, we can only apply the definition of passivity if and only if the system is stable. Since this requirement is not fulfilled, $G(s)$ cannot be passive nor strictly passive. Under these circumstances, Passivity theorem does not give us any conclusion. 
+\end{enumerate}
+
+Now we are going to analyse what happens if we consider the Circle Criterion. As it was showed in question \textbf{3}, the requisite imposed to $G(s)$ is to have no poles in the right half plane. Considering $T=1$, the system in equation (\ref{eq:gs}) turns out to be:
+
+$$ G = \frac{K}{s(1+s)}$$
+
+Whose poles are placed in $s = \{0,-1 \}$. In addition, the other condition that leads to BIBO stability is to not intersect the line Re $= -1$. This condition, for $G(s)$, is equivalent to making sure that:
+$$
+ \textrm{Re }G(j\omega) =\textrm{Re } \frac{K}{-\omega^2+j\omega}= -\frac{K\omega^2}{\omega^4+\omega^2} > -1$$
+For $\omega = 0$ the function is not defined, thus first we check the condition  $\forall \omega \neq 0$, then we check the condition for $\omega \to 0$:
+\begin{align*}
+\frac{K}{\omega^2+1} < 1 \quad \forall \omega \neq 0\\
+K-1 < \omega^2 \quad \forall \omega \neq 0
+\end{align*}
+Which holds $\forall \omega \neq 0$ as long as $K-1 \leq 0 \Rightarrow K \in (0,1]$, since $K>0$. Now we check  the limit for $\omega \to 0$:
+$$\lim_{\omega \to 0}-\frac{K\omega^2}{\omega^4+\omega^2}= \lim_{\omega \to 0}-\frac{K}{\omega^2+1}  =-K>-1$$
+%$$
+%\min \textrm{Re }G(j\omega) = \min \textrm{Re }\frac{K}{-\omega^2+j\omega} = -K 
+%$$
+
+%This result gives us the maximum value for $K$, which has to be compared to $-\frac{1}{k_2} = -1$. Therefore, the maximum value is $K=1$.
+
+So, the closed-loop system is BIBO stable for $K \in (0, 1)$, according to the Circle Criterion.

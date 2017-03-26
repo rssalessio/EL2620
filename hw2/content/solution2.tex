@@ -1,0 +1,31 @@
+\section*{Solution - Question 2}
+\label{sec:sol2}
+\begin{enumerate}
+\item{
+The gain of a system \textit{S}, with input $u(t)$ and output $y(t)$, by definition ~\cite[p. 209]{Khalil:2002:Nonlinear-systems:vh} is given by:
+$$ \gamma(S) = \sup_{u \in L_2} \frac{\|y(t)\|_2}{\|u(t)\|_2}$$
+In our case $y(t) = \toutd=f(u(t))$, and $u(t) = \tind$. $f(u(t))$ is described by equation (\ref{eqsys}), which means that $y=u$ when in contact, otherwise $y=0$.
+Thus: $$\|y\|_2^2 = \int_0^\infty f(u(t))^2 dt \leq \int_0^\infty u(t)^2 dt = \|u\|_2^2$$. When in contact we have the equality, so:
+$$\gamma(BL) = \sup_{u \in L_2} \frac{\|u(t)\|_2}{\|u(t)\|_2} = 1$$}
+\item{A system \emph{S} is said to be passive ~\cite[p. 227]{Khalil:2002:Nonlinear-systems:vh}, if the input $u(t)$ and the output $y(t)$ satisfy:
+$$\langle y,u \rangle_T = \int_0^T y^T(t)u(t) dt \geq 0 \quad \forall
+T > 0$$
+Which means  the phase of the system is between $[-\frac{\pi}{2},\frac{\pi}{2}]$, since if we interpret $u,y$ as vectors in the Euclidean space, from the euclidean scalar product we obtain:
+$$\cos(\phi)  = \frac{\langle y,u \rangle_T }{|y|_T|u|_T}$$
+When in contact the system has phase $0$, since $y=u$, and when not in contact $y \bot u$, which means that the output is orthogonal to the input, i.e. $|\phi| = \frac{\pi}{2}$. We can prove this using the previous formula. If in contact:
+
+$$\langle y,u \rangle_T = \int_0^T y^T(t)y(t) dt = \|y\|_2^2 \geq 0 \quad \forall
+T > 0$$
+If not in contact: 
+$$\langle y,u \rangle_T = \int_0^T y^T(t)\cdot 0 dt =0 \quad \forall T$$
+Thus the system is passive}
+\item{A system $f(u)$ is said to be bound by a sector  $[k_1,k_2], k_1,k_2 \in \mathbb{R}$ ~\cite[p. 264]{Khalil:2002:Nonlinear-systems:vh} if $\forall u \neq 0$ and with $f(0)=0$ we have:
+$$k_1 \leq \frac{f(u)}{u} \leq k_2 $$
+In the case of a back-lash system we have $\toutd=f(u(t))=f(\tind)$ which is equal to $\tind$ if in contact, otherwise $\toutd=0$, thus the condition $f(0)=0$ is satisfied.
+When in contact we have:
+$$k_1 \leq 1 \leq k_2$$
+When not in contact:
+$$k_1 \leq 0 \leq k_2$$
+We observe that $k_1=0, k_2=1$ satisfy both the cases, thus the system can be bound by a sector $[0,1]$.
+}
+\end{enumerate}

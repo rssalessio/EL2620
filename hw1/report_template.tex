@@ -1,0 +1,147 @@
+\documentclass[a4paper,twocolumn]{article} % Document type
+
+\ifx\pdfoutput\undefined
+    %Use old Latex if PDFLatex does not work
+   \usepackage[dvips]{graphicx}% To get graphics working
+   \DeclareGraphicsExtensions{.eps} % Encapsulated PostScript
+ \else
+    %Use PDFLatex
+   \usepackage[pdftex]{graphicx}% To get graphics working
+   \DeclareGraphicsExtensions{.pdf,.jpg,.png,.mps} % Portable Document Format, Joint Photographic Experts Group, Portable Network Graphics, MetaPost
+   \pdfcompresslevel=9
+\fi
+
+\usepackage{amsmath,amssymb}   % Contains mathematical symbols
+\usepackage[ansinew]{inputenc} % Input encoding, identical to Windows 1252
+\usepackage[english]{babel}    % Language
+%\usepackage[round,authoryear]{natbib}  %Nice author (year) citations
+\usepackage[square,numbers]{natbib}     %Nice numbered citations
+%\bibliographystyle{unsrtnat}           %Unsorted bibliography
+\bibliographystyle{plainnat}            %Sorted bibliography
+
+\addtolength{\topmargin}{-30mm}% Removes 30mm from the top margin
+\addtolength{\textheight}{30mm}% Adds it to the text height
+%\usepackage{mcode}
+
+\begin{document}               % Begins the document
+
+\title{Homework 1 in EL2620 Nonlinear Control}
+\author{Alessio Russo \\ 911103-T192 \\ alessior@kth.se \and Enrique Cobo Jim\'enez\\
+  921005-1299 \\ ejcj@kth.se}
+%\date{2010-10-10}             % If you want to set the date yourself.
+
+\maketitle                     % Generates the title
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% solutions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{content/problem.tex}
+\input{content/solution1.tex}
+\input{content/solution2.tex}
+\input{content/solution3.tex}
+\input{content/solution4.tex}
+\input{content/solution5.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Example 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \section*{Problem 1 -- Behavior of a nonlinear system}
+% \label{sec:prob1}
+% Study the behavior of the system
+% \begin{subequations}\label{eqn:PPSystem}
+% \begin{align}
+%     \frac{d x}{dt} & = y \label{eqn:PPSystem1} \\
+%     \frac{d y}{dt} & = -2x -2y -4 x^2 \label{eqn:PPSystem2}
+% \end{align}
+% \end{subequations}
+% with regard to its initial value and assess if the system is globally asymptotically stable.
+
+% We have chosen a solution strategy based on the phase portrait and broken down the problem into the following three subproblems:
+% \begin{enumerate}
+%   \item Draw the phase portrait of the system.
+%   \item How many equilibrium points does the system have, where are they located, and what type of equilibrium points are they?
+%   \item Is the system globally asymptotically stable?  That is, do all trajectories lead to the same equilibrium point?
+% \end{enumerate}
+
+% \section*{Solution 1 -- Behavior of a nonlinear system}
+% \label{sec:sol1}
+
+% \begin{enumerate}
+%   \item The phase portrait of the system described by \eqref{eqn:PPSystem} is shown in Figure~\ref{fig:pplane}.
+
+%   \item The system has two equilibrium points, \mbox{(0,0)} and \mbox{($-\frac{1}{2}$,0)}.  They were computed by setting the right hand side of \eqref{eqn:PPSystem} equal to zero
+% \begin{align*}
+%     \begin{array}{rl}
+%     y & =0  \\
+%     -2x -2y -4 x^2 & = 0
+%     \end{array} \; \Rightarrow
+%     \begin{array}{rl}
+%       y & =0 \\
+%       x (1+2x) & =0
+%     \end{array}.
+% \end{align*}
+% Both points are marked by large dots in Figure~\ref{fig:pplane}.
+
+% Let us now characterize the equilibrium points. The Hartman-Grobman theorem~\cite[p. 288]{Sastry:1999:Nonlinear-systems:-analysis-stability-and-control:xr} states that the behavior of a nonlinear system near a hyperbolic equilibrium is qualitatively the same as its linearization at the equilibrium point. An equilibrium is by definition hyperbolic if the real part of the eigenvalues of the Jacobian matrix are all non-zero. We will therefore linearize the system \eqref{eqn:PPSystem} around both equilibrium points, calculate the eigenvalues, check if the points are hyperbolic, and determine the type of the equilibria based on the eigenvalues.
+
+% The linearization of an autonomous nonlinear system $\dot{\textbf{x}} = \textbf{f}(\textbf{x})$ around an equilibrium point, given by $\textbf{f}(\textbf{x}_0) = 0$, is $\dot{\tilde{\textbf{x}}} = A \tilde{\textbf{x}}$, with $\tilde{\textbf{x}} = \textbf{x} - \textbf{x}_0$ and the Jacobian matrix $A = \left. \frac{\partial\textbf{f}}{\partial \textbf{x}}(\textbf{x}) \right|_{\textbf{x}=\textbf{x}_0}$. The Jacobian matrix is calculated to be
+% \begin{equation*}
+%     \frac{\partial\textbf{f}}{\partial \textbf{x}}(\textbf{x}) =
+%     \left[\begin{array}{cc}
+%     0 & 1 \\
+%     -2 -8x & -2
+%     \end{array}\right],
+% \end{equation*}
+% which for the two equilibrium points turns out to be
+% \begin{equation*}
+%     A_{(0,0)} =
+%     \left[\begin{array}{cc}
+%     0 & 1 \\
+%     -2 & -2
+%     \end{array}\right], \; A_{(-\frac{1}{2},0)} =
+%     \left[\begin{array}{cc}
+%     0 & 1 \\
+%     2 & -2
+%     \end{array}\right].
+% \end{equation*}
+% The eigenvalues of the Jacobian matrix are given by the characteristic equation
+% \begin{equation*}
+%     \det(\lambda I - A) = 0.
+% \end{equation*}
+% The characteristic equation of the system linearized around \mbox{(0,0)} is
+% \begin{equation*}
+%     \lambda^2 +2 \lambda + 2 = 0,
+% \end{equation*}
+% which gives the eigenvalues $\lambda_{1,2} = -1 \pm j$. The characteristic equation of the system linearized around \mbox{($-\frac{1}{2}$,0)} is
+% \begin{equation*}
+%     \lambda^2 +2 \lambda - 2 = 0,
+% \end{equation*}
+% which gives the eigenvalues $\lambda_1 = \sqrt{3} -1 \approx 0.73$ and $\lambda_2 = -1 -\sqrt{3} \approx -2.73$. Both equilibrium points are hence hyperbolic and we can characterize them based on the eigenvalues of the Jacobian matrix of the linearized systems.  The eigenvalues tell us that we have a stable focus at \mbox{(0,0)} and a saddle point at \mbox{($-\frac{1}{2}$,0)}. This is easily verified by looking at Figure~\ref{fig:pplane}.
+
+%   \item Only trajectories starting within the shaded region and its extension above the part of the phase portrait shown in Figure~\ref{fig:pplane} leads to the stable focus. It is therefore obvious that the system is not globally asymptotically stable.
+% \end{enumerate}
+
+% \noindent \textbf{Answer:} The system has two equilibrium points; a stable focus at \mbox{(0,0)} and a saddle point at \mbox{($-\frac{1}{2}$,0)}. It is not globally asymptotically stable.
+
+% We have learned how to analyze the behavior of autonomous nonlinear systems with two states by drawing the phase portrait and characterizing the equilibrium points of the system.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{content/references.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Place your figures and tables at the end of the document starting on a new page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{content/figures.tex}
+
+\end{document}      % End of the document

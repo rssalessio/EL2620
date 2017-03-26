@@ -1,0 +1,18 @@
+\section*{Solution - Question 3}
+\label{sec:sol3}
+Consider the system in figure \ref{fig:feedback}.
+\begin{enumerate}
+\item{The gain of the system \emph{G} is given by: ~\cite[p. 209]{Khalil:2002:Nonlinear-systems:vh}
+
+$$\gamma(G) = \sup_{\omega \in (0,\infty)} |G(i\omega)| $$ 
+
+Suppose \emph{G} to be BIBO stable, then the Small Gain Theorem ~\cite[p. 217]{Khalil:2002:Nonlinear-systems:vh} states that the feedback system is BIBO stable if:
+$$\gamma(G)\gamma(\textrm{BL}) < 1$$
+Since $\gamma(\textrm{BL}) = 1$, then we need \emph{G} to have the following constraint in order to have a BIBO stable feedback:
+$$\gamma(G) < 1$$}
+\item{The Passivity Theorem ~\cite[p. 245]{Khalil:2002:Nonlinear-systems:vh} states that a closed loop system, with two subsystems, is BIBO stable if at least one of the system is strictly passive and the other one is passive. In this way we have the total phase of the system to be less than $\pi$. In the case considered, the back-lash system is passive, thus we need \emph{G} to be strictly passive in order to have a BIBO stable closed loop system.}
+\item{In case of the Circle Criterion ~\cite[p. 265]{Khalil:2002:Nonlinear-systems:vh}, we should assume \emph{G} to have no poles in the right half plane and find  a sector of the non-linearity, which is $\left[ k_1=0,k_2=1 \right]$ as found in section \textbf{2}. Then, to have BIBO stability for the closed loop system we need $G(i\omega)$ to not encircle nor intersect the circle defined by the points $$\left[-\frac{1}{k_1}, -\frac{1}{k_2}\right] $$%\Rightarrow$ 
+
+So, in this case the Nyquist curve of $G(s)$ should not intersect the line Re $=-1$.}
+
+\end{enumerate}

@@ -1,0 +1,20 @@
+\section*{Solution - Question 1}
+%\label{sec:sol1}
+
+To understand the problem first consider the case where $y=0$. In this case (\ref{eqn:syseq1}) becomes $\dot{x} = ax+bx^2$. It's a differential equations with two zeros, i.e. two equilibrium points, $x_{1,2} = (0, -\frac{a}{b})$. Since $x(t) \geq 0 $ $\forall t$ and the island has finite size, then the case $b>0$ makes no sense (if $a>0$ then we have the species keeps on growing without any limit, because $\dot{x}$ is convex and positive; and $a<0$ has no physical interpretation in this case).
+% \begin{itemize} 
+% \item if $a>0$ then we have the species keeps on growing, without any limit, even if the island is finite. That is because $ax+bx^2$ is convex and positive for $x \geq 0 \Rightarrow \dot{x}(t) > 0$.
+% \item if $a<0$ then we have that for $x \in (0, -\frac{a}{b})$ the population keeps on decreasing since $\dot{x}(t) < 0$ and after $-\frac{a}{b}>0$ we obtain again the case $a>0$, which makes no sense. This case $a<0$ depends on the initial condition (the initial population) and has no physical interpretation.
+% \end{itemize}
+Instead, the case $b<0$ is the one we are interested in:
+\begin{itemize}
+\item if $a > 0$ we have that $\dot{x}(t) \geq 0 $ $\forall x \in (0, -\frac{a}{b})$, then $\dot{x}(t) < 0 $  $\forall x > -\frac{a}{b}$. This means that if the initial population is $c_0 \in (0, -\frac{a}{b})$, then $x$  starts to increase, up to a point where the island has no more food/space available, then the population starts to decrease, and the process repeats. In this case the population $x$ does not depend on any other population to grow (for example it may be a population that eats grass).
+\item if $a < 0$ we have $\dot{x}(t) < 0$ $\forall x\geq 0$, thus the population dies due to starvation. This happens because $x$ preys on another species which is not present on the island ($y=0$). 
+\end{itemize}
+Now consider both $x,y$. Again, because of the previous arguments we have $b,f < 0$. The coefficients $c,e$ describe the effect of $y$ on $x$ and vice-versa.  Because of that we can have $4$ types of models, depending on the sign of $c,e$. The sign of those coefficients is important because they have a positive or negative effect on $\dot{x},\dot{y}$, which represent the instantaneous population change. The 4 types are the following ones:
+\begin{enumerate}
+\item \textbf{c $\boldsymbol >$ 0, e $\boldsymbol >$ 0}: If both coefficients are positive it means that both $x,y$ benefit from an increase of the other population. Thus $a,d$ should be positive, because neither $x$ or $y$ preys on the other one. This is an example of symbiotic populations.
+\item \textbf{c $\boldsymbol >$ 0, e $\boldsymbol <$ 0}: this means that $x$ preys on $y$ since $x$ benefits from an increase of $y$ and $y$ has a drawback from the increase of $x$. In this case we have a Predator-Prey model ($x$ predator, $y$ prey).
+\item \textbf{c $\boldsymbol <$ 0, e $\boldsymbol >$ 0}: it's the opposite case of before, in this case we have a Prey-Predator model ($x$ prey, $y$ predator).
+\item \textbf{c $\boldsymbol <$ 0, e $\boldsymbol <$ 0}: in this case  both populations suffers from an increase of the other. This is an example of competitive populations.
+\end{enumerate}

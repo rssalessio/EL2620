@@ -1,0 +1,33 @@
+\section*{Problem}
+\label{sec:prob}
+The problem considered is the analysis  of a type of 2-species population model, which is the following one:
+\begin{subequations}\label{eqn:syseqs}
+\begin{align}
+    \frac{d x}{dt} & = x(a+bx+cy) \label{eqn:syseq1} \\
+    \frac{d y}{dt} & = y(d+ex+fy) \label{eqn:syseq2}
+\end{align}
+\end{subequations}
+Where $a,b,c,d,e,f \in \mathbb{R}$ and $x=x(t), y=y(t)$ are functions such that:
+$$x(t),y(t): \mathbb{R}_0^+ \to \mathbb{R}_0^+$$
+They are non negative functions starting at time $t=0$.\\
+$x,y$ describe the evolution of two species on a grassy island, and depending on the value of the constants $x$ may prey on $y$, or have other kind of behaviours.\\ \\
+The analysis of such model is broken down into the following five sub-problems:
+\begin{enumerate}
+\item {Depending on the signs of the coefficients describe the different types of populations models and label those models as: 
+\begin{itemize}
+\item Predator-Prey($x$ predator, $y$ prey)
+\item Prey-Predator($x$ prey, $y$ predator)
+\item Competitive($x$ and $y$ inhibits each other)
+\item Symbiotic($x$ and $y$ benefit each other)
+\end{itemize}}
+\item{Consider the case when $(a,b,f,d)=(3,-1,-1,2)$. Draw the phase portrait, interpret the model and determine the type of each equilibrium for the following cases:
+\begin{itemize}
+\item $(c,e) = (-2,-1)$
+\item $(c,e) = (-2,1)$
+\item $(c,e) = (2,-1)$
+\item $(c,e) = (2,1)$
+\end{itemize}}
+\item {Again, consider the previous questions, but analyse the model for the case $(a,e,b,f,c,d)=(1,1,0,0,-1,-1)$.}
+\item {Show that the $x$- and $y$-axes are invariant for all values of the parameters $(a,b,c,d,e,f)$. Why is this a necessary feature of a population model? Assuming $(a,e,b,f,c,d)=(1,1,0,0,-1,-1)$ show that a periodic orbit exists.}
+\item {Generalize the population model to $N>2$ species.}
+\end{enumerate}

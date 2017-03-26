@@ -1,0 +1,35 @@
+\section*{Solution - Question 1}
+\label{sec:sol1}
+The eigenvalues of the systems are given by solving the characteristic polynomial:
+$$\det(\lambda I -A)=0$$
+The solution, calculated using Matlab, is the following:\\
+$\lambda_i=(-3.65,1.066,0.0027,-20,-20,-125,-125)^T$. Two of the poles, $\lambda_2=1.0662, \lambda_3 = 0.0027$ have positive real part thus the model is unstable.
+This is because the flight dynamics is unstable and we can make the following reasoning: we expect the internal elevator state and the internal spoiler state to have very fast dynamics, since they correspond to the dynamics of the rudder servos, same for the elevator and spoiler angle. In fact  $\lambda_4,\lambda_5,\lambda_6,\lambda_7$  have large value, in an absolute sense, and those eigenvalues should corresponds to the rudder dynamics, therefore $\lambda_1,\lambda_2,\lambda_3$ should correspond to the flight dynamics. Moreover it is normal to assume that the rudder dynamics do not depend on the flight dynamics. To prove all of that, observe the matrix $A$:\begin{multline}
+A=
+\left[
+\begin{matrix}
+   -1.3936 &   0.9744  & -0.0019&   -0.5349   \\
+  5.6870 &  -1.1827 &   0.0002  &-25.9398 \\
+   0 &   1.0000  &       0   &      0  \\
+   0  &       0    &     0  & -20.0000  \\
+  0   &      0    &     0   &      0 \\
+  0  &       0     &    0    &     0   \\
+   0   &      0      &   0     &    0
+\end{matrix}
+\right.
+\\
+\left.
+\begin{matrix}
+ -0.0071  & -1.0562  &  0.4891 \\
+  7.9642 & -23.8594 &  -6.2531 \\
+   0        & 0  &       0\\
+    0& -312.5000    &     0\\
+  -20.0000        & 0 &-312.5000 \\
+  0& -125.0000   &      0 \\
+  0&         0 &-125.0000
+\end{matrix}
+\right]
+\end{multline}
+and notice that $\delta_e,\delta_s, x_e, x_s$ (last four rows) have dynamics that do no depend on $\alpha, \theta, \dot{\theta} $ (first three row/states), which indicates the rudder does not depend on the pitch or angle of attack, as expected. \\Then:
+$$\textrm{eig}(A) = \textrm{eig}(A_1)\cup \textrm{eig}(A_2)$$
+where $\textrm{eig}(A)$ denotes the eigenvalues of the matrix $A$ and $A_1 =A(\text{1:3,1:3}), A_2=(\text{4:7,4:7})$. $A_1$ represents the first 3 states, the flight dynamics, and $A_2$ represents the states of the rudder dynamics. A simple check gives that $\textrm{eig}(A_1)= (-3.6452,1.0662,0.0027)$, so the flight dynamics are unstable. \\ This can also be proven by checking the eigenvectors associated to each eigenvalue, and see that each eigenvalue is mainly associated with one state.
